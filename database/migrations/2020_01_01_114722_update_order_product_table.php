@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreateOrderProductTable extends Migration
+
+class UpdateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,13 +13,11 @@ class CreateOrderProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_product', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('order_id');
-            $table->integer('product_id');
-            $table->timestamps();
+        Schema::table('order_product', function (Blueprint $table) {
+            $table->integer('count')->default(1)->after('product_id');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,6 +25,8 @@ class CreateOrderProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_product');
+        Schema::table('order_product', function (Blueprint $table) {
+            $table->dropColumn('count');
+        });
     }
 }
