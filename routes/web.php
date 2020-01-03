@@ -16,7 +16,21 @@
 //});
 
 
+Auth::routes([
+    'reset'=>false,
+    'confirm'=>false,
+    'verify'=>false,
+]);
 Route::get('/', 'MainController@index')->name('index');
+
+Route::get('/logout', 'Auth\LoginController@logout')->name('get-logout');
+
+Route::group(['middleware'=>'auth'], function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+
+
 
 Route::get('/basket', 'BasketController@basket')->name('basket');
 Route::get('/basket/place', 'BasketController@basketPlace')->name('basket-place');
