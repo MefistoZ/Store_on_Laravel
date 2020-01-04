@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableUsers extends Migration
+class AlterTableOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterTableUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('is_admin')->default(0);
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('user_id')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AlterTableUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('count');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 }
