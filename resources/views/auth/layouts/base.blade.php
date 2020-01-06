@@ -21,22 +21,27 @@
 <div id="app">
     <nav class="navbar navbar-default navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="{{route('index')}}">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 Вернуться на сайт
             </a>
 
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="{{ route('categories.index') }}">Категории</a></li>
+                    <li><a class="navbar-brand" href="{{route('products.index')}}">Товары</a></li>
+                    <li><a class="navbar-brand" href="#">Заказы</a></li>
+
                 </ul>
+
                 @guest
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Войти</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">Зарегистрироваться</a>
-                    </li>
-                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Зарегистрироваться</a>
+                        </li>
+                    </ul>
                 @endguest
 
                 @auth
@@ -44,7 +49,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false" v-pre>
+                               aria-haspopup="true" aria-expanded="false">
 
 
                             </a>

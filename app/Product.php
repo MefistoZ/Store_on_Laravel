@@ -10,6 +10,7 @@ class Product extends Model
 //    {
 //        return Category::find($this->category_id);
 //    }
+    protected $fillable = ['category_id', 'name', 'code', 'short_description', 'description','images', 'price', ];
 
     public function category()
     {

@@ -1,6 +1,6 @@
 @extends('auth.layouts.base')
 
-@section('title', 'Категории')
+@section('title', 'Товары')
 
 @section('content')
     <div class="col-md-12">
@@ -21,16 +21,16 @@
                     Действия
                 </th>
             </tr>
-            @foreach($categories as $category)
+            @foreach($products as $product)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->code }}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $product->id }}</td>
+                    <td>{{ $product->code }}</td>
+                    <td>{{ $product->name }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                                <a class="btn btn-success" type="button" href="{{ route('categories.show', $category) }}">Открыть</a>
-                                <a class="btn btn-warning" type="button" href="{{ route('categories.edit', $category) }}">Редактировать</a>
+                            <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                <a class="btn btn-success" type="button" href="{{ route('products.show', $product) }}">Открыть</a>
+                                <a class="btn btn-warning" type="button" href="{{ route('products.edit', $product) }}">Редактировать</a>
                                 @csrf
                                 @method('DELETE')
                                 <input class="btn btn-danger" type="submit" value="Удалить"></form>
@@ -42,6 +42,6 @@
         </table>
 
         <a class="btn btn-success" type="button"
-           href="{{ route('categories.create') }}">Добавить категорию</a>
+           href="{{ route('products.create') }}">Добавить Товар</a>
     </div>
 @endsection
