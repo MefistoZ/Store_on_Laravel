@@ -31,34 +31,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li @routeactive('index')>
                     <a class="nav-link" href="{{route('index')}}">Гланая
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li @routeactive('categor*')>
                     <a class="nav-link" href="{{route('categories')}}">Все категории</a>
                 </li>
-                <li class="nav-item">
+                <li @routeactive('basket')>
                     <a class="nav-link" href="{{route('basket')}}">Корзина</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
                 </li>
 
                 @guest
-                    <li class="nav-item ml-5">
-                        <a class="nav-link" href="{{route('login')}}">Панель Администратора</a>
+                    <li @routeactive('login')>
+                        <a class="nav-link" href="{{route('login')}}">Войти</a>
                     </li>
                 @endguest
 
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('home')}}">Панель Администратора</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('get-logout')}}">Выйти</a>
-                    </li>
+                    @admin
+                        <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Панель Администратора</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{route('person.orders.index')}}">Мои заказы</a></li>
+                    @endadmin
+
+                    <li class="nav-item"><a class="nav-link" href="{{route('get-logout')}}">Выйти</a></li>
                 @endauth
             </ul>
         </div>

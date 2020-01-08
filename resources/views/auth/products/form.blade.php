@@ -8,15 +8,6 @@
 
 @section('content')
     <div class="col-md-12">
-        @if(count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li><h3>Короткое описание должно быть не больше 200 символов</h3></li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         @isset($product)
             <h1>Редактировать Товар <b>{{ $product->name }}</b></h1>
         @else
@@ -38,16 +29,11 @@
                 <div class="input-group row">
                     <label for="name" class="col-sm-2 col-form-label">Название: </label>
                     <div class="col-sm-6">
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <input type="text" class="form-control" name="name" id="name"
                                value="@isset($product){{ $product->name }}@endisset">
-                    </div>
-                </div>
-                <br>
-                <div class="input-group row">
-                    <label for="code" class="col-sm-2 col-form-label">Код: </label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="code" id="code"
-                               value="@isset($product){{$product->code}}@endisset">
                     </div>
                 </div>
                 <br>
@@ -58,10 +44,10 @@
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}"
                                         @isset($product)
-                                            @if($product->category_id == $category->id)
-                                                selected
-                                            @endif
-                                        @endisset
+                                        @if($product->category_id == $category->id)
+                                        selected
+                                    @endif
+                                    @endisset
                                 >{{$category->name}}</option>
                             @endforeach
                         </select>
@@ -72,6 +58,9 @@
                     <label for="short_description" class="col-sm-2 col-form-label"><b>Краткое</b> описание товара:
                     </label>
                     <div class="col-sm-6">
+                        @error('short_description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <textarea name="short_description" id="short_description" cols="72"
                                   rows="7">@isset($product){{ $product->short_description }}@endisset</textarea>
                     </div>
@@ -80,6 +69,9 @@
                 <div class="input-group row">
                     <label for="description" class="col-sm-2 col-form-label"><b>Полное</b> описание товара: </label>
                     <div class="col-sm-6">
+                        @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <textarea name="description" id="description" cols="72"
                                   rows="7">@isset($product){{ $product->description }}@endisset</textarea>
                     </div>
@@ -88,6 +80,9 @@
                 <div class="input-group row">
                     <label for="price" class="col-sm-2 col-form-label">Цена: </label>
                     <div class="col-sm-6">
+                        @error('price')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <input type="text" class="form-control" name="price" id="price"
                                value="@isset($product){{ $product->price }}@endisset">
                     </div>
@@ -96,8 +91,11 @@
                 <div class="input-group row">
                     <label for="image" class="col-sm-2 col-form-label">Картинка: </label>
                     <div class="col-sm-10">
+                        @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <label class="btn btn-default btn-file">
-                            Загрузить <input type="file" style="display: none;" name="image" id="image">
+                            Загрузить <input type="file" name="image" id="image">
                         </label>
                     </div>
                 </div>

@@ -11,6 +11,10 @@
             <ul class="list-unstyled">
                 <li>Pub_date</li>
             </ul>
+            <ul class="list-unstyled">
+                <li><img height="200px" src="{{Storage::url($category->image)}}" alt=""></li>
+            </ul>
+            <hr>
         </div>
     @endforeach
 @endsection
