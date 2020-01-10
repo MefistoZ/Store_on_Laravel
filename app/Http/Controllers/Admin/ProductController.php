@@ -42,9 +42,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-
-        $path = $request->file('image')->store('products');//Путь к папке сохранения картинок
         $params = $request->all();
+        $path = $request->file('image')->store('products');//Путь к папке сохранения картинок
+
         $params['image'] = $path;
         $params['code'] = Str::slug($params['name'],'-');//Из поля name делает человеко-читаемый slug
         Product::create($params);

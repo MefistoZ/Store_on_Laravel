@@ -10,7 +10,7 @@ class Product extends Model
 //    {
 //        return Category::find($this->category_id);
 //    }
-    protected $fillable = ['category_id', 'name', 'code', 'short_description', 'description','image', 'price', ];
+    protected $fillable = ['category_id', 'name', 'code', 'short_description', 'description','image', 'price', 'hit', 'new', 'recommend'];
 
     public function category()
     {
@@ -23,5 +23,20 @@ class Product extends Model
             return $this->pivot->count * $this->price;
         }
         return $this->price;
+    }
+
+    public function isHit()
+    {
+        return $this->hit === 1;
+    }
+
+    public function isNew()
+    {
+        return $this->new === 1;
+    }
+
+    public function isRecommend()
+    {
+        return $this->recommend === 1;
     }
 }

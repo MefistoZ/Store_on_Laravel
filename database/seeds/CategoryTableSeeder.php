@@ -12,22 +12,30 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = [];
+        $categories = [
+            [
+                'name' => 'Мобильные телефоны',
+                'code' => 'mobiles',
+                'description' => 'В этом разделе вы найдёте самые популярные мобильные телефонамы по отличным ценам!',
+                'image' => 'categories/mobile.jpg',
+            ],
+            [
+                'name' => 'Портативная техника',
+                'code' => 'portable',
+                'description' => 'Раздел с портативной техникой.',
+                'image' => 'categories/appliance.jpg',
+            ],
+            [
+                'name' => 'Бытовая техника',
+                'code' => 'appliances',
+                'description' => 'Раздел с бытовой техникой',
+                'image' => 'categories/portable.jpg',
+            ],
 
-        $cName = 'Без категории';
-        $categories[] = [
-            'name' => $cName,
-            'code' => Str::slug($cName),
+
         ];
 
-        for ($i = 1; $i <= 5; $i++){
-            $cName = 'Категория № '.$i;
 
-            $categories[]=[
-                'name' => $cName,
-                'code' => Str::slug($cName),
-            ];
-        }
-        \DB::table('categories')->insert($categories);
+        DB::table('categories')->insert($categories);
     }
 }
