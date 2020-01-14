@@ -3,11 +3,6 @@
 @section('title', 'Главная')
 
 
-@section('side_category_list')
-
-    @include('categories\side_category_list')
-
-@endsection
 
 @section('slider')
 
@@ -16,30 +11,32 @@
 @endsection
 
 @section('content')
-    <h1>Все товары</h1>
     <form method="GET" action="{{route("index")}}">
-        <div class="filters row">
+        <div class="filters row mb-3 mt-3">
             <div class="col-sm-6 col-md-3">
                 <label for="price_from">Цена от
-                    <input type="text" name="price_from" id="price_from"з size="6" value="{{ request()->price_from}}">
+                    <input type="text" name="price_from" id="price_from" з size="6" value="{{ request()->price_from}}">
                 </label>
                 <label for="price_to">До
-                    <input type="text" name="price_to" id="price_to"  size="6"  value="{{ request()->price_to }}">
+                    <input type="text" name="price_to" id="price_to" size="6" value="{{ request()->price_to }}">
                 </label>
             </div>
-            <div class="col-sm-2 col-md-2">
-                <label for="hit">
-                    <input type="checkbox" name="hit" id="hit" @if(request()->has('hit')) checked @endif> Хит
+            <div class="col-sm-2 col-md-2 custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="hit" id="hit" @if(request()->has('hit')) checked @endif>
+                <label class="custom-control-label" for="hit">
+                     Хит
                 </label>
             </div>
-            <div class="col-sm-2 col-md-2">
-                <label for="new">
-                    <input type="checkbox" name="new" id="new" @if(request()->has('new')) checked @endif> Новинка
+            <div class="col-sm-2 col-md-2 custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="new" id="new" @if(request()->has('new')) checked @endif>
+                <label class="custom-control-label" for="new">
+                    Новинка
                 </label>
             </div>
-            <div class="col-sm-2 col-md-2">
-                <label for="recommend">
-                    <input type="checkbox" name="recommend" id="recommend" @if(request()->has('recommend')) checked @endif> Рекомендуем
+            <div class="col-sm-2 col-md-2 custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="recommend" id="recommend" @if(request()->has('recommend')) checked @endif>
+                <label class="custom-control-label" for="recommend">
+                    Рекомендуем
                 </label>
             </div>
             <div class="col-sm-6 col-md-3">
@@ -48,16 +45,17 @@
             </div>
         </div>
     </form>
-    @foreach($products as $product)
-        @include('product/product_card', compact('product'))
-    @endforeach
-
+    <div class="row">
+        @foreach($products as $product)
+            @include('product/product_card', compact('product'))
+        @endforeach
+    </div>
 
 @endsection
 
 @section('pagination')
 
-        {{$products->links()}}
+    {{$products->links()}}
 
 @endsection
 

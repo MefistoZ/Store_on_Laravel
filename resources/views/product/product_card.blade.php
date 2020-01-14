@@ -28,7 +28,7 @@
                 <form action="{{route('basket-add', $product)}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-success ml-1 mr-4" role="button">В корзину</button>
-                    <a href="{{route('product_detail', [$product->category->code, $product->code])}}"
+                    <a href="{{route('product_detail', [isset($category) ? $category->code : $product->category->code, $product->code])}}"
                        class="btn btn-success" role="button">Подробнее</a>
                 </form>
             </div>

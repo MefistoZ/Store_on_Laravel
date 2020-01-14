@@ -12,8 +12,6 @@
                 <div>
                     <br>
                     <p>Укажите свои имя и номер телефона, чтобы наш менеджер мог с вами связаться:</p>
-
-                    <div class="container">
                         <div class="form-group">
                             <label for="name" class="control-label"><b>Имя:</b></label>
                                 <input type="text" name="name" id="name" value="" class="form-control">
@@ -24,7 +22,7 @@
                                 <input type="text" name="phone" id="phone" value="" class="form-control">
                         </div>
                         <input type="submit" class="btn btn-success" value="Подтвердить заказ">
-                    </div>
+
                     <br>
                     @csrf
                 </div>

@@ -13,8 +13,6 @@ class MainController extends Controller
 {
     public function index(ProductsFilterRequest $request)
     {
-
-
         $productsQuery = Product::with('category');
         if ($request->filled('price_from')){
             $productsQuery->where('price','>=', $request->price_from);
@@ -41,13 +39,13 @@ class MainController extends Controller
 
     public function category($code)
     {
-
         $category = Category::where('code', $code)->first();
         return view('categories/category_detail', compact('category'));
     }
 
     public function product_detail($category, $product)
     {
-        return view('product/product_detail', ['product' => $product]);
+        $product = Product::where('code', $product)->first();
+        return view('product/product_detail', compact('product'));
     }
 }

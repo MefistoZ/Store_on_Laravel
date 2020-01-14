@@ -9,7 +9,7 @@
 
     <div class="row">
 
-        @foreach($category->products as $product)
+        @foreach($category->products()->with('category')->get() as $product)
             @include('product/product_card', compact('product'))
         @endforeach
 

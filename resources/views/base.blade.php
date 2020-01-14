@@ -51,9 +51,9 @@
 
                 @auth
                     @admin
-                        <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Панель Администратора</a></li>
-                    @else
-                        <li class="nav-item"><a class="nav-link" href="{{route('person.orders.index')}}">Мои заказы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Панель Администратора</a></li>
+                @else
+                    <li class="nav-item"><a class="nav-link" href="{{route('person.orders.index')}}">Мои заказы</a></li>
                     @endadmin
 
                     <li class="nav-item"><a class="nav-link" href="{{route('get-logout')}}">Выйти</a></li>
@@ -66,40 +66,31 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">
 
-        @yield('side_category_list')
-
-
-        <div class="col-lg-9">
-            @if(session()->has('success'))
-
-                <p class="alert alert-success">{{session()->get('success')}}</p>
-
-            @endif
-            @if(session()->has('warning'))
-
-                <p class="alert alert-warning">{{session()->get('warning')}}</p>
-
-            @endif
+    @yield('side_category_list')
 
 
-            @yield('slider')
 
-            <div class="row">
+    @if(session()->has('success'))
 
-                @yield('content')
+        <p class="alert alert-success">{{session()->get('success')}}</p>
 
-            </div>
-            <!-- /.row -->
-                @yield('pagination')
-        </div>
-        <!-- /.col-lg-9 -->
+    @endif
+    @if(session()->has('warning'))
 
-    </div>
-    <!-- /.row -->
+        <p class="alert alert-warning">{{session()->get('warning')}}</p>
 
-        <!--bead practice -->
+    @endif
+
+
+    @yield('slider')
+
+
+    @yield('content')
+
+
+    @yield('pagination')
+
 
 </div>
 <!-- /.container -->
