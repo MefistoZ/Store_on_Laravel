@@ -51,4 +51,5 @@
         </table>
 
     </div>
+    {{$orders->links()}}
 @endsection

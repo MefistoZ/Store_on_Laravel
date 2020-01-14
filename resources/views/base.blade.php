@@ -92,12 +92,14 @@
 
             </div>
             <!-- /.row -->
-
+                @yield('pagination')
         </div>
         <!-- /.col-lg-9 -->
 
     </div>
     <!-- /.row -->
+
+        <!--bead practice -->
 
 </div>
 <!-- /.container -->

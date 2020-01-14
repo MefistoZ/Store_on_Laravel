@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+        $products = Product::paginate(10);
         return view('auth.products.index', compact('products'));
     }
 
@@ -43,10 +43,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $params = $request->all();
-        $path = $request->file('image')->store('products');//Путь к папке сохранения картинок
 
+        $path = $request->file('image')->store('products');//Путь к папке сохранения картинок
         $params['image'] = $path;
+
         $params['code'] = Str::slug($params['name'],'-');//Из поля name делает человеко-читаемый slug
+
         Product::create($params);
 
         return redirect()->route('products.index');
@@ -89,6 +91,12 @@ class ProductController extends Controller
             Storage::delete($product->image);
             $path = $request->file('image')->store('products');//Путь к папке сохранения картинок
             $params['image'] = $path;
+        }
+
+        foreach (['new', 'hit', 'recommend'] as $fieldName) {
+            if(!isset($params[$fieldName])){
+                $params[$fieldName] = 0;
+            }
         }
 
         $params['code'] = Str::slug($params['name'],'-');//Из поля name делает человеко-читаемый slug

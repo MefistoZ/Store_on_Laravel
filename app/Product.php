@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-//    public function getCategory()
-//    {
-//        return Category::find($this->category_id);
-//    }
     protected $fillable = ['category_id', 'name', 'code', 'short_description', 'description','image', 'price', 'hit', 'new', 'recommend'];
 
     public function category()
@@ -23,6 +19,21 @@ class Product extends Model
             return $this->pivot->count * $this->price;
         }
         return $this->price;
+    }
+
+    public function setNewAttribute($value)
+    {
+        $this->attributes['new'] = $value === 'on' ? 1 : 0;
+    }
+
+    public function setHitAttribute($value)
+    {
+        $this->attributes['Hit'] = $value === 'on' ? 1 : 0;
+    }
+
+    public function setRecommendAttribute($value)
+    {
+        $this->attributes['Recommend'] = $value === 'on' ? 1 : 0;
     }
 
     public function isHit()
