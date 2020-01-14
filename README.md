@@ -1,2 +1,2 @@
-#Standart Store on Laravel
+Standart Store on Laravel
 
